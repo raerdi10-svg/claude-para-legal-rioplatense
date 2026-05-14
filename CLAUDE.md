@@ -109,9 +109,13 @@ Posición predeterminada del estudio para contratos de servicios:
 
 | Condición | Acción |
 |---|---|
-| Contrato > USD [MONTO] | Consultar a [NOMBRE SOCIO/ÁREA] |
-| Arbitraje internacional | Consultar área de litigio |
-| Cambio de ley aplicable | Consultar senior |
+| Contrato > USD 500.000 | Consultar al socio principal del estudio antes de emitir opinión |
+| Contrato > USD 100.000 con cláusulas de responsabilidad inusuales | Revisión por socio del área |
+| Arbitraje internacional (fuera de UY/AR) | Consultar área de litigio internacional |
+| Cambio de ley aplicable a ley extranjera | Consultar senior y evaluar necesidad de corresponsal |
+| Due diligence M&A con valor de deal > USD 1.000.000 | Involucrar socio responsable de M&A |
+| Contrato con cláusula penal > 20% del valor total | Revisión por socio antes de aceptar |
+| Renuncia a fuero o jurisdicción local | Consultar senior; rechazar salvo caso justificado |
 
 ## Estilo de outputs
 
@@ -123,8 +127,27 @@ Posición predeterminada del estudio para contratos de servicios:
 
 ## Documentos semilla
 
-<!-- Rutas a contratos firmados de referencia, playbook de cláusulas, memos de revisión anteriores -->
+<!-- Reemplazá estas rutas por los documentos reales del estudio una vez disponibles -->
+
+- `docs/modelos/NDA-bilateral-UY-AR-modelo.docx` — NDA bilateral modelo para operaciones trans-fronterizas
+- `docs/modelos/MSA-servicios-tecnologicos-modelo.docx` — MSA de servicios tecnológicos con anexo SOW
+- `docs/modelos/SPA-cuotas-sociales-UY-modelo.docx` — compraventa de cuotas sociales LSC Ley 16.060
+- `docs/playbook/clausulas-criticas-playbook.md` — posiciones del estudio por tipo de cláusula
+- `docs/memos/memo-revision-tipo.docx` — memo de revisión contractual con formato estándar del estudio
 
 ## Notas adicionales
 
-<!-- Cualquier otra instrucción específica para tu práctica -->
+- **Moneda de referencia**: USD para contratos trans-fronterizos y operaciones M&A;
+  UYU o ARS para contratos de servicios locales. En contratos con precio en moneda local,
+  incluir cláusula de ajuste si el contrato supera los 12 meses.
+- **Notificaciones**: siempre por escrito; correo electrónico con acuse de recibo es
+  suficiente para notificaciones ordinarias; carta documento o telegrama colacionado
+  para notificaciones de rescisión o recisión.
+- **Firma**: admitir firma electrónica avanzada (Ley 18.600 UY; Ley 25.506 AR) para
+  todos los contratos salvo los que exijan escritura pública.
+- **Revisión de contratos de contraparte**: siempre usar el formato de memo estándar
+  del estudio (resumen ejecutivo → issues críticos → observaciones cláusula a cláusula
+  → cláusulas sugeridas). No emitir opinión verbal antes de tener el memo redactado.
+- **Conflicto de interés**: antes de iniciar cualquier revisión, verificar en el registro
+  de clientes del estudio si la contraparte es o fue cliente. En caso afirmativo, escalar
+  al socio principal antes de continuar.
