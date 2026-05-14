@@ -1,0 +1,19 @@
+{
+  "name": "administrativo",
+  "display_name": "Derecho Administrativo Rioplatense",
+  "description": "Asistente de práctica administrativo-pública para estudios jurídicos de Argentina y Uruguay. Identificación y redacción de recursos administrativos, cálculo de plazos fatales y seguimiento de expedientes ante organismos públicos, con referencias al Decreto 500/991 (UY), la Ley 19.549 LPA (AR) y la jurisprudencia del TCA y la Cámara CAF.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil administrativo del estudio. Recopila jurisdicción principal, organismos habituales (ministerios, entes autónomos, reguladores), tipo de actos impugnados, umbrales de riesgo y socio de referencia, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "recurso-administrativo",
+      "description": "Identifica y estructura el recurso administrativo correcto ante actos de la Administración en Uruguay (Decreto 500/991, recurso de revocación / jerárquico / anulación ante TCA) y Argentina (Ley 19.549, recurso de reconsideración / jerárquico / alzada). Calcula plazos fatales y genera el escrito base para revisión del abogado.",
+      "user-invocable": true
+    }
+  ]
+}
