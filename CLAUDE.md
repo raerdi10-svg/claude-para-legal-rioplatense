@@ -73,10 +73,37 @@ Posición predeterminada del estudio para contratos de servicios:
 - **Referencia normativa**: Ley 19.920 (DIPr UY); CCyCN arts. 2594 y ss. (DIPr AR).
 
 ### Confidencialidad
-<!-- Duración, alcance, excepciones estándar -->
+- **Duración estándar**: vigencia del contrato más 3 años; para información que
+  constituye secreto comercial o know-how, plazo indefinido o mientras conserve
+  el carácter confidencial.
+- **Alcance**: toda información marcada como confidencial o que por su naturaleza
+  deba entenderse como tal. Incluir expresamente: datos personales de clientes,
+  código fuente, fórmulas, estructuras de precios y estrategias comerciales.
+- **Excepciones estándar aceptables**: información de dominio público (sin culpa del
+  receptor), información ya conocida por el receptor antes de la divulgación,
+  información recibida lícitamente de terceros, divulgación requerida por autoridad
+  competente (con notificación previa a la parte divulgante si es posible).
+- **Riesgo MEDIO**: ausencia de plazo de confidencialidad post-contractual, o alcance
+  tan amplio que incluya información generada independientemente por el receptor.
+- **Referencia normativa**: Ley 17.616 (UY — derechos de autor y secreto); CCyCN
+  art. 1063 (AR — buena fe contractual); Ley 24.766 (AR — confidencialidad).
 
 ### Propiedad intelectual
-<!-- Titularidad de desarrollos, licencias, obras por encargo -->
+- **Desarrollos bajo encargo**: los derechos patrimoniales sobre las obras creadas
+  en ejecución del contrato corresponden al comitente, salvo pacto en contrario.
+  Incluir cláusula de cesión expresa de todos los derechos de explotación.
+- **Software preexistente del proveedor**: el proveedor retiene la titularidad;
+  se otorga al cliente una licencia de uso no exclusiva, intransferible y limitada
+  al objeto del contrato. Verificar que la licencia cubra todos los usos previstos.
+- **Desarrollos mixtos (preexistente + nuevo)**: distinguir claramente en el contrato
+  qué es preexistente (del proveedor) y qué es desarrollo específico (del cliente).
+  Evitar cláusulas que confundan ambas categorías.
+- **Marcas y nombre comercial**: prohibir expresamente el uso de marcas de la
+  contraparte sin autorización escrita. Incluir cláusula de no afectación de marcas.
+- **Riesgo ALTO**: cláusulas que transfieran al proveedor derechos sobre datos o
+  desarrollos del cliente; licencias de software sin especificar alcance de uso.
+- **Referencia normativa**: Ley 9.739 (UY — derechos de autor); Ley 11.723
+  (AR — propiedad intelectual); Ley 17.164 (UY — patentes); Ley 24.481 (AR — patentes).
 
 ## Reglas de escalamiento
 
