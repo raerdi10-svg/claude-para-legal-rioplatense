@@ -1,153 +1,253 @@
-# Perfil de Práctica — Civil y Comercial Rioplatense
+# Claude para Legal Rioplatense — Documentación del Repositorio
 
-> Este archivo es completado por `/civil-comercial:cold-start-interview`.
-> Editalo directamente para ajustes pequeños. Cada skill de este plugin lo lee.
+> Guía técnica para asistentes de IA que trabajen sobre este repositorio.
+> Para instrucciones de uso del sistema, ver `README.md` y `QUICKSTART.md`.
 
-## Jurisdicción principal
-Ambas — operaciones trans-fronterizas Uruguay / Argentina.
+---
 
-- **Uruguay:** CC (Código Civil), CGP (Código General del Proceso), LSC Ley 16.060,
-  Ley 18.331 (datos personales), Ley 17.250 (relaciones de consumo).
-- **Argentina:** CCyCN (Código Civil y Comercial de la Nación), LGS Ley 19.550,
-  CPCCN, Ley 25.326 (datos personales), Ley 24.240 (defensa del consumidor).
+## Qué es este repositorio
 
-Sede del estudio: Montevideo. Foro preferido: tribunales locales de cada jurisdicción;
-arbitraje nacional ante el CAM (UY) o el CEMARC (AR) para disputas comerciales de
-cuantía superior a USD 200.000.
+Sistema de plugins y agentes para flujos de trabajo jurídicos en **Uruguay y Argentina**. Cada plugin cubre un área de práctica (civil-comercial, laboral, corporativo, litigio, privacidad, etc.) y expone skills que Claude ejecuta automáticamente o bajo comando slash.
 
-## Tipos de contrato más frecuentes
-- Acuerdos de confidencialidad (NDAs) — operaciones M&A y joint ventures
-- Contratos de servicios tecnológicos (MSAs, SOWs, SaaS)
-- Acuerdos de distribución y representación comercial (UY y AR)
-- Contratos de compraventa de participaciones sociales (SPAs)
-- Contratos de obra y servicios de construcción
-- Contratos de licencia de propiedad intelectual y software
-- Acuerdos de accionistas y pactos parasociales
-- Contratos de arrendamiento comercial e industrial
+El mismo sistema corre en tres superficies:
+- **Claude Cowork** — plugins instalados desde el marketplace
+- **Claude Code** — plugins instalados con `/plugin install`
+- **Claude Managed Agents API** — agentes programados deployados con `scripts/deploy-managed-agent.sh`
 
-## Umbrales de riesgo
+---
 
-| Nivel | Criterio |
-|---|---|
-| ALTO | Cláusulas de responsabilidad ilimitada · arbitraje en jurisdicción extranjera · renuncia a fuero · cambio material no notificado |
-| MEDIO | Plazos de prescripción modificados · garantías amplias · cláusulas penales > 20% del contrato · moneda de pago inusual |
-| BAJO | Modificaciones menores de forma · ajustes de protocolo de notificación · cambios de dirección |
+## Estructura del repositorio
 
-## Playbook de cláusulas críticas
+```
+claude-para-legal-rioplatense/
+│
+├── CLAUDE.md                          ← este archivo (doc técnica del repo)
+├── README.md                          ← referencia de usuario completa
+├── QUICKSTART.md                      ← instalación en 60 segundos
+├── CONTRIBUTING.md                    ← cómo contribuir
+├── jurisdiccion-UY-AR.md              ← tabla de diferencias UY/AR por área
+│
+├── civil-comercial/                   ← plugin: contratos comerciales
+├── corporativo/                       ← plugin: M&A y gobierno societario
+├── laboral/                           ← plugin: derecho del trabajo
+├── privacidad/                        ← plugin: datos personales y DPA
+├── regulatorio/                       ← plugin: cambios normativos
+├── propiedad-intelectual/             ← plugin: marcas, patentes, PI
+├── litigio/                           ← plugin: litigio civil y cartera
+├── administrativo/                    ← plugin: derecho público
+├── gobernanza-ia/                     ← plugin: IA Act y regulación IA
+├── clinica-juridica/                  ← plugin: setup de clínica
+├── estudiante-derecho/                ← plugin: formación jurídica
+├── hub-constructor/                   ← plugin: instalador de skills comunidad
+│
+├── managed-agent-cookbooks/           ← agentes programados (headless)
+│   ├── vencimiento-contratos/
+│   ├── seguimiento-expedientes/
+│   ├── monitor-normas/
+│   ├── diligencia-grilla/
+│   └── radar-lanzamiento/
+│
+└── scripts/
+    ├── deploy-managed-agent.sh        ← deploy de managed agents
+    ├── validate.py                    ← validación de estructura
+    └── orchestrate.py                 ← orquestación de agentes
+```
 
-### Responsabilidad
-Posición predeterminada del estudio para contratos de servicios:
+---
 
-- **Cap de responsabilidad**: limitar la responsabilidad total de nuestro cliente al monto
-  pagado en los últimos 12 meses bajo el contrato, o al valor del contrato si es de suma fija.
-- **Exclusiones obligatorias**: excluir daños indirectos, lucro cesante, pérdida de datos y
-  daño a la reputación, salvo dolo o culpa grave.
-- **Indemnización**: cláusula recíproca; rechazar indemnización unilateral a favor de la
-  contraparte sin cap ni exclusiones. Si se acepta, exigir que esté sujeta al mismo cap
-  de responsabilidad general.
-- **Riesgo ALTO**: cualquier cláusula de responsabilidad ilimitada o que excluya el cap
-  para categorías amplias (ej. "toda violación al contrato"). Escalar siempre.
+## Arquitectura de un plugin
 
-### Rescisión
-- **Preaviso mínimo para rescisión sin causa**: 30 días para contratos de hasta 1 año;
-  60 días para contratos de más de 1 año; 90 días para contratos de más de 3 años.
-- **Rescisión inmediata (justa causa)**: incumplimiento material no subsanado en 15 días
-  tras notificación fehaciente; insolvencia, concurso o quiebra de la contraparte;
-  cambio de control sin consentimiento (si el contrato lo prevé).
-- **Consecuencias de rescisión sin causa**: pago de servicios devengados hasta la fecha;
-  no procede indemnización adicional salvo pacto expreso. Rechazar cláusulas de
-  "break-up fee" superiores al 5% del valor total del contrato sin justificación.
-- **Referencia normativa**: CC art. 1291 (UY — rescisión bilateral); CCyCN art. 1078
-  (AR — extinción del contrato); CCyCN art. 1011 (AR — contratos de duración).
+Cada directorio de plugin tiene estructura fija:
 
-### Ley aplicable y jurisdicción
-- **Preferencia de ley**: ley del domicilio del cliente; en contratos trans-fronterizos
-  UY/AR, negociar ley uruguaya como primera opción (mayor certeza para el estudio),
-  ley argentina como alternativa aceptable.
-- **Preferencia de foro**: juzgados ordinarios del domicilio del cliente para contratos
-  de mediana cuantía (hasta USD 200.000). Para contratos de mayor cuantía, arbitraje
-  ante CAM (Montevideo) o CEMARC (Buenos Aires) según la sede de la contraparte.
-- **Riesgo ALTO**: sumisión a jurisdicción extranjera (fuera de UY/AR), arbitraje en
-  sede internacional (ICC, AAA, LCIA) sin consulta previa al área de litigio del estudio.
-- **Renuncia al fuero**: rechazar sistemáticamente; si la contraparte insiste, escalar.
-- **Referencia normativa**: Ley 19.920 (DIPr UY); CCyCN arts. 2594 y ss. (DIPr AR).
+```
+<plugin>/
+  .claude-plugin/
+    plugin.json          ← manifiesto del plugin
+  CLAUDE.md              ← perfil de práctica (completado por cold-start-interview)
+  skills/
+    <nombre-skill>/
+      SKILL.md           ← definición de la skill
+  agents/                ← agentes programados (si aplica)
+  hooks/                 ← hooks pre/post herramienta (si aplica)
+```
 
-### Confidencialidad
-- **Duración estándar**: vigencia del contrato más 3 años; para información que
-  constituye secreto comercial o know-how, plazo indefinido o mientras conserve
-  el carácter confidencial.
-- **Alcance**: toda información marcada como confidencial o que por su naturaleza
-  deba entenderse como tal. Incluir expresamente: datos personales de clientes,
-  código fuente, fórmulas, estructuras de precios y estrategias comerciales.
-- **Excepciones estándar aceptables**: información de dominio público (sin culpa del
-  receptor), información ya conocida por el receptor antes de la divulgación,
-  información recibida lícitamente de terceros, divulgación requerida por autoridad
-  competente (con notificación previa a la parte divulgante si es posible).
-- **Riesgo MEDIO**: ausencia de plazo de confidencialidad post-contractual, o alcance
-  tan amplio que incluya información generada independientemente por el receptor.
-- **Referencia normativa**: Ley 17.616 (UY — derechos de autor y secreto); CCyCN
-  art. 1063 (AR — buena fe contractual); Ley 24.766 (AR — confidencialidad).
+### plugin.json
 
-### Propiedad intelectual
-- **Desarrollos bajo encargo**: los derechos patrimoniales sobre las obras creadas
-  en ejecución del contrato corresponden al comitente, salvo pacto en contrario.
-  Incluir cláusula de cesión expresa de todos los derechos de explotación.
-- **Software preexistente del proveedor**: el proveedor retiene la titularidad;
-  se otorga al cliente una licencia de uso no exclusiva, intransferible y limitada
-  al objeto del contrato. Verificar que la licencia cubra todos los usos previstos.
-- **Desarrollos mixtos (preexistente + nuevo)**: distinguir claramente en el contrato
-  qué es preexistente (del proveedor) y qué es desarrollo específico (del cliente).
-  Evitar cláusulas que confundan ambas categorías.
-- **Marcas y nombre comercial**: prohibir expresamente el uso de marcas de la
-  contraparte sin autorización escrita. Incluir cláusula de no afectación de marcas.
-- **Riesgo ALTO**: cláusulas que transfieran al proveedor derechos sobre datos o
-  desarrollos del cliente; licencias de software sin especificar alcance de uso.
-- **Referencia normativa**: Ley 9.739 (UY — derechos de autor); Ley 11.723
-  (AR — propiedad intelectual); Ley 17.164 (UY — patentes); Ley 24.481 (AR — patentes).
+Manifiesto que declara el plugin y sus skills. Campos obligatorios:
 
-## Reglas de escalamiento
+```json
+{
+  "name": "nombre-plugin",
+  "display_name": "Nombre Legible",
+  "description": "Descripción en ≤ 1024 caracteres",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "nombre-skill",
+      "description": "Qué hace esta skill (≤ 1024 caracteres)",
+      "user-invocable": true
+    }
+  ]
+}
+```
 
-| Condición | Acción |
-|---|---|
-| Contrato > USD 500.000 | Consultar al socio principal del estudio antes de emitir opinión |
-| Contrato > USD 100.000 con cláusulas de responsabilidad inusuales | Revisión por socio del área |
-| Arbitraje internacional (fuera de UY/AR) | Consultar área de litigio internacional |
-| Cambio de ley aplicable a ley extranjera | Consultar senior y evaluar necesidad de corresponsal |
-| Due diligence M&A con valor de deal > USD 1.000.000 | Involucrar socio responsable de M&A |
-| Contrato con cláusula penal > 20% del valor total | Revisión por socio antes de aceptar |
-| Renuncia a fuero o jurisdicción local | Consultar senior; rechazar salvo caso justificado |
+- `user-invocable: true` → la skill aparece como comando slash `/<plugin>:<skill>`
+- `user-invocable: false` → la skill se activa automáticamente cuando el contexto es relevante
 
-## Estilo de outputs
+### CLAUDE.md de cada plugin
 
-- Idioma: español rioplatense formal
-- Citas: Código primero (ej. "art. 1291 CC" o "art. 1 LSC"), doctrina como respaldo
-- Formato de fecha: día/mes/año
-- Evitar gerundio al inicio de oración
-- Memo: resumen ejecutivo (3 líneas) → issues críticos → observaciones cláusula a cláusula → cláusulas sugeridas
+Es el **perfil de práctica** del plugin: jurisdicción, umbrales de riesgo, playbook de cláusulas, reglas de escalamiento y estilo de outputs. Lo genera `/<plugin>:cold-start-interview` y cada skill lo lee en el Paso 0 antes de actuar.
 
-## Documentos semilla
+Si el CLAUDE.md de un plugin está vacío o sin configurar, las skills advierten al usuario que ejecute la entrevista de cold-start y continúan con defaults del plugin.
 
-<!-- Reemplazá estas rutas por los documentos reales del estudio una vez disponibles -->
+---
 
-- `docs/modelos/NDA-bilateral-UY-AR-modelo.docx` — NDA bilateral modelo para operaciones trans-fronterizas
-- `docs/modelos/MSA-servicios-tecnologicos-modelo.docx` — MSA de servicios tecnológicos con anexo SOW
-- `docs/modelos/SPA-cuotas-sociales-UY-modelo.docx` — compraventa de cuotas sociales LSC Ley 16.060
-- `docs/playbook/clausulas-criticas-playbook.md` — posiciones del estudio por tipo de cláusula
-- `docs/memos/memo-revision-tipo.docx` — memo de revisión contractual con formato estándar del estudio
+## Estructura de una SKILL.md
 
-## Notas adicionales
+Cada skill es un archivo markdown con frontmatter YAML:
 
-- **Moneda de referencia**: USD para contratos trans-fronterizos y operaciones M&A;
-  UYU o ARS para contratos de servicios locales. En contratos con precio en moneda local,
-  incluir cláusula de ajuste si el contrato supera los 12 meses.
-- **Notificaciones**: siempre por escrito; correo electrónico con acuse de recibo es
-  suficiente para notificaciones ordinarias; carta documento o telegrama colacionado
-  para notificaciones de rescisión o recisión.
-- **Firma**: admitir firma electrónica avanzada (Ley 18.600 UY; Ley 25.506 AR) para
-  todos los contratos salvo los que exijan escritura pública.
-- **Revisión de contratos de contraparte**: siempre usar el formato de memo estándar
-  del estudio (resumen ejecutivo → issues críticos → observaciones cláusula a cláusula
-  → cláusulas sugeridas). No emitir opinión verbal antes de tener el memo redactado.
-- **Conflicto de interés**: antes de iniciar cualquier revisión, verificar en el registro
-  de clientes del estudio si la contraparte es o fue cliente. En caso afirmativo, escalar
-  al socio principal antes de continuar.
+```markdown
+---
+name: nombre-skill
+description: >
+  Descripción de la skill (≤ 1024 caracteres). Debe explicar
+  qué produce, qué input toma y cuándo es relevante.
+argument-hint: "[indicación de input para el usuario]"
+user-invocable: true
+---
+
+# Skill: Nombre de la Skill
+
+## Propósito
+[Una o dos oraciones sobre qué hace y qué no hace.]
+
+## Paso 0 — Lectura del perfil de práctica
+[Siempre el primer paso: leer CLAUDE.md del plugin.]
+
+## Paso 1 — Recolección de datos
+## Paso 2 — Análisis
+## Paso N — Output estructurado
+## Paso final — Compuerta de aprobación profesional
+
+## Guardrails
+[Lista de restricciones: qué nunca afirmar, cuándo escalar,
+qué disclaimers incluir siempre.]
+```
+
+**Convenciones de skills:**
+
+- El Paso 0 siempre lee el `CLAUDE.md` del plugin para incorporar el perfil de práctica.
+- El output final siempre incluye una compuerta de revisión profesional (checklist para que el abogado confirme antes de entregar al cliente).
+- Los guardrails incluyen siempre: no afirmar validez absoluta, citar norma antes que doctrina, aclarar que es análisis preliminar.
+- Clasificación de riesgo estándar: **ALTO / MEDIO / BAJO** según el perfil del estudio.
+- Las citas normativas van en formato `art. [N] [CÓDIGO]` — ejemplo: `art. 1078 CCyCN`, `art. 245 LCT`, `art. 1 LSC`.
+
+---
+
+## Estructura de un managed agent cookbook
+
+Los agentes programados viven en `managed-agent-cookbooks/<slug>/agent.yaml`:
+
+```yaml
+---
+name: nombre-agente
+display_name: "Nombre legible del agente"
+description: >
+  Qué hace el agente.
+schedule: "0 8 * * 1"   # cron expression
+timezone: "America/Montevideo"
+# campos de configuración específicos del agente
+---
+
+# System Prompt — [Nombre del agente]
+
+[Prompt completo del agente: objetivo, workflow paso a paso,
+formato de output, protocolo de notificaciones, guardrails.]
+```
+
+Cada cookbook es autónomo: contiene todo lo necesario para deployar el agente. Se deploya con:
+
+```bash
+scripts/deploy-managed-agent.sh <slug>
+```
+
+---
+
+## Jurisdicción y referencias normativas
+
+El archivo `jurisdiccion-UY-AR.md` es la referencia rápida de divergencias entre Uruguay y Argentina por área. Toda skill consciente de jurisdicción lo usa como fuente de verdad secundaria (la primaria es el CLAUDE.md del plugin configurado por el estudio).
+
+Las jurisdicciones son siempre **UY** (Uruguay) y **AR** (Argentina). No se incluyen otras jurisdicciones latinoamericanas — el scope del proyecto es explícitamente el Río de la Plata.
+
+---
+
+## Convenciones de desarrollo
+
+### Idioma y estilo
+
+- Todo el contenido (skills, prompts, docs) en **español rioplatense formal**.
+- Citas normativas: código antes que doctrina — `art. 1291 CC`, `art. 19.550 LGS`, `art. 18.331 LPDP`.
+- Fechas: `día/mes/año` (ej. `14/05/2026`).
+- Sin gerundio al inicio de oración.
+
+### Agregar una nueva skill
+
+1. Crear directorio: `<plugin>/skills/<nombre-skill>/SKILL.md`
+2. Incluir frontmatter con `name`, `description` (≤ 1024 caracteres), `argument-hint`, `user-invocable`.
+3. Declarar la skill en `<plugin>/.claude-plugin/plugin.json` bajo el array `"skills"`.
+4. Estructura mínima: Paso 0 (lectura de CLAUDE.md) → pasos de análisis → output estructurado → compuerta de aprobación → guardrails.
+5. Validar: `python scripts/validate.py <plugin>`.
+
+### Agregar un nuevo plugin
+
+1. Crear directorio `<plugin>/` con la estructura estándar.
+2. Crear `.claude-plugin/plugin.json` con el manifiesto.
+3. Crear `CLAUDE.md` con las secciones del perfil de práctica (vacías — se completan con cold-start-interview).
+4. Crear al menos una skill: `skills/cold-start-interview/SKILL.md`.
+5. No hay build step — todo es markdown y JSON.
+
+### Guardrails globales (aplican a todas las skills)
+
+- Ninguna skill puede afirmar que un contrato "es válido", que una posición "va a ganar" o que un trámite "está en regla" en forma absoluta.
+- Todo output es un **borrador para revisión por abogado matriculado**.
+- Las skills deben declarar siempre la jurisdicción analizada (UY / AR / ambas).
+- Las citas de fuentes no verificadas contra un conector MCP se marcan `[verificar]`.
+- Antes de cualquier output que pueda usarse frente a un tercero, mostrar la compuerta de aprobación profesional.
+
+---
+
+## Plugins instalados y sus comandos
+
+| Plugin | Comando cold-start | Skills principales |
+|---|---|---|
+| `civil-comercial` | `/civil-comercial:cold-start-interview` | `revision-contratos`, `revision-nda`, `historial-cesiones`, `escala-escalamiento` |
+| `corporativo` | `/corporativo:cold-start-interview` | `revision-tabular`, `extraccion-issues`, `consentimiento-directorio`, `cumplimiento-sociedades` |
+| `laboral` | `/laboral:cold-start-interview` | `revision-despido`, `revision-contratacion`, `clasificacion-trabajador`, `investigacion-interna`, `politica-laboral`, `qa-laboral` |
+| `privacidad` | `/privacidad:cold-start-interview` | `respuesta-arco`, `revision-dpa`, `generacion-eia` |
+| `regulatorio` | `/regulatorio:cold-start-interview` | `revision-lanzamiento`, `diff-politica` |
+| `propiedad-intelectual` | `/propiedad-intelectual:cold-start-interview` | `busqueda-marca`, `cese-desistimiento` |
+| `litigio` | `/litigio:cold-start-interview` | `cronologia`, `carta-documento`, `demanda-recibida` |
+| `administrativo` | `/administrativo:cold-start-interview` | `recurso-administrativo` |
+| `gobernanza-ia` | `/gobernanza-ia:cold-start-interview` | `triaje-uso-ia`, `evaluacion-impacto-ia`, `revision-proveedor-ia` |
+| `clinica-juridica` | `/clinica-juridica:cold-start-interview` | `ingreso-cliente`, `memo-caso` |
+| `estudiante-derecho` | `/estudiante-derecho:cold-start-interview` | `drill-socratico`, `resumen-fallo` |
+| `hub-constructor` | — | `instalador-skill` |
+
+---
+
+## Managed agents deployados
+
+| Slug | Schedule | Qué hace |
+|---|---|---|
+| `vencimiento-contratos` | Lunes 8 AM (Montevideo) | Escanea el CLM, clasifica vencimientos por horizonte y notifica en Slack |
+| `seguimiento-expedientes` | Diario | Monitorea expedientes en Poder Judicial UY y PJN AR |
+| `monitor-normas` | Diario | Monitorea BCU, BCRA, AFIP/ARCA, CNV, URSEA para cambios normativos |
+| `diligencia-grilla` | On demand | Revisión tabular de data room para due diligence M&A |
+| `radar-lanzamiento` | On demand | Revisión de lanzamiento de producto contra calibración regulatoria |
+
+---
+
+## Disclaimer obligatorio
+
+Todo output de este sistema es un **borrador para revisión por abogado matriculado**. No es asesoramiento legal, no es una conclusión jurídica, no reemplaza a un profesional. Estos plugins no representan posiciones jurídicas de Anthropic.
