@@ -1,0 +1,14 @@
+{
+  "name": "hub-constructor",
+  "display_name": "Hub Constructor — Skills de la Comunidad",
+  "description": "Descubrimiento e instalación de skills de la comunidad con trust gate real. Verifica la fuente, muestra el contenido para revisión y solicita confirmación explícita antes de instalar cualquier skill en el entorno.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "instalador-skill",
+      "description": "Instala una skill de la comunidad con verificación de fuente, inspección del contenido y confirmación explícita del usuario antes de proceder. Nunca instala sin aprobación.",
+      "user-invocable": true
+    }
+  ]
+}
