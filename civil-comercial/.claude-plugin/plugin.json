@@ -1,0 +1,34 @@
+{
+  "name": "civil-comercial",
+  "display_name": "Civil y Comercial Rioplatense",
+  "description": "Asistente de práctica civil y comercial para estudios jurídicos de Argentina y Uruguay. Revisión de contratos, NDAs, trazado de cesiones y routing de escalamiento, con referencias al CCyCN y al Código Civil uruguayo.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil del estudio. Recopila jurisdicción principal, tipos de contrato, umbrales de escalamiento, socio de referencia y preferencias de estilo, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "revision-contratos",
+      "description": "Revisión de contratos comerciales contra el playbook del estudio. Produce memo con resumen ejecutivo, issues clasificados ALTO/MEDIO/BAJO, observaciones cláusula a cláusula y cláusulas sugeridas de reemplazo. Requiere confirmación de abogado matriculado antes de entregar el memo final.",
+      "user-invocable": true
+    },
+    {
+      "name": "revision-nda",
+      "description": "Clasificación VERDE/AMARILLO/ROJO de NDAs entrantes. Verifica partes, definición de confidencial, exclusiones, plazo, obligaciones post-vencimiento, jurisdicción, remedy y datos personales. Produce semáforo con lista de cambios requeridos.",
+      "user-invocable": true
+    },
+    {
+      "name": "historial-cesiones",
+      "description": "Trazado cronológico de cómo cambió un contrato a lo largo de adendas y cesiones. Produce tabla con fecha, tipo de modificación, cláusulas afectadas, partes y observaciones. Identifica si cada cesión requirió consentimiento y si fue otorgado.",
+      "user-invocable": true
+    },
+    {
+      "name": "escala-escalamiento",
+      "description": "Routing de issues contractuales al aprobador correcto según las reglas de escalamiento del estudio. Clasifica el issue, identifica al aprobador y redacta el email o memo de consulta con contexto, opciones recomendadas y plazo para decidir.",
+      "user-invocable": true
+    }
+  ]
+}

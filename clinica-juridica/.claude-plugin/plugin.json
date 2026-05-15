@@ -1,0 +1,24 @@
+{
+  "name": "clinica-juridica",
+  "display_name": "Clínica Jurídica",
+  "description": "Asistente pedagógico para clínicas jurídicas universitarias de Argentina y Uruguay. Estructura el ingreso de clientes, guía al estudiante en el análisis IRAC mediante el método socrático, y produce memos de caso con brechas marcadas para el aprendizaje activo.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil de la clínica jurídica. Recopila universidad, área(s) de práctica, postura pedagógica, nivel de los estudiantes y preferencias de supervisión, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "ingreso-cliente",
+      "description": "Guía al estudiante en el ingreso estructurado de un nuevo cliente a la clínica jurídica mediante preguntas socráticas. Produce ficha de ingreso con datos del cliente, relato cronológico, pretensión, issues jurídicos preliminares, verificación de conflictos de interés, jurisdicción y próximos pasos.",
+      "user-invocable": true
+    },
+    {
+      "name": "memo-caso",
+      "description": "Guía al estudiante en la elaboración de un memo de análisis bajo el método IRAC (Issue / Rule / Application / Conclusion). Señala qué norma aplica, cuestiona la aplicación a los hechos y marca con [BRECHA] los análisis incompletos sin completarlos por el estudiante.",
+      "user-invocable": true
+    }
+  ]
+}

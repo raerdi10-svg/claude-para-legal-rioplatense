@@ -1,0 +1,29 @@
+{
+  "name": "litigio",
+  "display_name": "Litigio Rioplatense",
+  "description": "Asistente de práctica litigiosa para estudios jurídicos de Argentina y Uruguay. Triaje de demandas entrantes, cronología de hechos, redacción de cartas documento e intimaciones, con referencias al CPCCN, al CGP uruguayo y a los plazos de prescripción del CCyCN y el Código Civil uruguayo.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil de litigio del estudio. Recopila jurisdicción(es), fuero habitual (civil / comercial / laboral / contencioso-administrativo), tipo de práctica (actor / demandado / ambos), conexión con cartera in-house y umbrales de escalamiento, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "cronologia",
+      "description": "Dado un expediente o relato de hechos, construye: tabla cronológica con fecha, hecho, fuente/prueba y relevancia jurídica; identificación de hechos controvertidos vs. no controvertidos; línea de tiempo visual en texto; hitos procesales clave y fechas límite. Para causas de responsabilidad civil o PI: cuadro elemento a elemento de la norma vs. los hechos.",
+      "user-invocable": true
+    },
+    {
+      "name": "carta-documento",
+      "description": "Redacta una carta documento (Correo Argentino) o telegrama colacionado (Uruguay) con todos los datos formales. Recopila remitente, destinatario, hechos, pretensión, plazo y advertencia judicial. Incluye cálculo del plazo de prescripción, urgencia y checklist de envío.",
+      "user-invocable": true
+    },
+    {
+      "name": "demanda-recibida",
+      "description": "Analiza una demanda entrante: pretensión y monto, fundamentos jurídicos, hechos alegados vs. hechos propios del cliente, prueba ofrecida, plazos procesales (contestación, excepciones), opciones estratégicas (allanamiento / negociar / contestar / reconvenir) e issues de cross-cartera. Produce resumen ejecutivo, análisis y recomendación.",
+      "user-invocable": true
+    }
+  ]
+}

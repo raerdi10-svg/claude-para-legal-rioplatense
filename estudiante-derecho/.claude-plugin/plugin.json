@@ -1,0 +1,24 @@
+{
+  "name": "estudiante-derecho",
+  "display_name": "Estudiante de Derecho",
+  "description": "Asistente de estudio personalizado para estudiantes de Derecho de Argentina y Uruguay. Ofrece práctica socrática sobre temas jurídicos, resúmenes de fallos en el formato preferido del estudiante y seguimiento de materias débiles, con referencias al CCyCN, al Código Civil uruguayo y al derecho procesal rioplatense.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil del estudiante. Recopila universidad, año de la carrera, materias prioritarias, formato preferido de estudio y áreas de fortaleza y debilidad, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "drill-socratico",
+      "description": "Dado un tema jurídico o caso hipotético, conduce un diálogo socrático con el estudiante: hace preguntas, espera la respuesta, cuestiona supuestos e introduce hechos nuevos que complican el análisis. Nunca da la respuesta directa. Al final, produce un resumen de puntos fuertes y áreas de mejora.",
+      "user-invocable": true
+    },
+    {
+      "name": "resumen-fallo",
+      "description": "Dado un fallo judicial, produce el resumen en el formato preferido del estudiante: esquema doctrinal (hechos / norma / holding / ratio / obiter), IRAC, o ficha de jurisprudencia. Incluye preguntas de comprensión al final para reforzar el aprendizaje.",
+      "user-invocable": true
+    }
+  ]
+}

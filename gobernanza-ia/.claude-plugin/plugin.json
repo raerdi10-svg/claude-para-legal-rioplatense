@@ -1,0 +1,29 @@
+{
+  "name": "gobernanza-ia",
+  "display_name": "Gobernanza y Regulación de IA",
+  "description": "Asistente de práctica regulatoria en inteligencia artificial para estudios jurídicos de Argentina y Uruguay. Triaje de usos de IA, evaluación de impacto, revisión de términos de proveedores y análisis de cumplimiento bajo el Reglamento IA de la UE, la Ley 27.275 (AR), normativas del BCRA y el BCU, y marcos sectoriales aplicables.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil de gobernanza de IA del estudio. Recopila sectores cliente, usos de IA en evaluación, regímenes regulatorios aplicables, umbrales de riesgo y referente de práctica, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "triaje-uso-ia",
+      "description": "Dado un uso propuesto de IA, clasifica el caso de uso, evalúa si cae en categorías de alto riesgo según las regulaciones aplicables, identifica derechos afectados (privacidad, no discriminación, explicabilidad) y emite una recomendación semáforo: proceder / proceder con medidas / consultar regulador / no proceder.",
+      "user-invocable": true
+    },
+    {
+      "name": "evaluacion-impacto-ia",
+      "description": "Conduce una Evaluación de Impacto de IA (EIA-IA) completa. Recopila descripción del sistema, finalidad, datos, partes involucradas, supervisión humana y mecanismos de impugnación. Evalúa riesgos de discriminación algorítmica, privacidad, seguridad y responsabilidad. Produce informe con plan de mitigación.",
+      "user-invocable": true
+    },
+    {
+      "name": "revision-proveedor-ia",
+      "description": "Revisa los términos de un proveedor de IA (API, SaaS, plataforma). Verifica uso de datos para entrenamiento, responsabilidad por outputs, jurisdicción, nivel de servicio, portabilidad, auditoría y cumplimiento con normativas de privacidad. Produce tabla con semáforo y cláusulas sugeridas.",
+      "user-invocable": true
+    }
+  ]
+}

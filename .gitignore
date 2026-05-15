@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Entorno y secretos
+.env
+.env.local
+*.env
+.anthropic_key
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+tmp/
+.tmp/
+
+# Configuración local de Claude
+.mcp.json.local
+settings.local.json
+
+# Documentos cliente (nunca commitear)
+docs/asuntos/
+docs/clientes/

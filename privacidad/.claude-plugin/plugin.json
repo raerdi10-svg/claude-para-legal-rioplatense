@@ -1,0 +1,29 @@
+{
+  "name": "privacidad",
+  "display_name": "Privacidad y Protección de Datos — Rioplatense",
+  "description": "Asistente de práctica de privacidad y protección de datos personales para estudios jurídicos de Argentina y Uruguay. Cubre solicitudes ARCO/habeas data, revisión de DPA, evaluaciones de impacto en la privacidad (EIA) y configuración del perfil del estudio, con referencias a la Ley 18.331 (Uruguay), la Ley 25.326 (Argentina) y sus normas reglamentarias.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil de privacidad del estudio. Recopila jurisdicción, tipo de clientes (responsables/encargados), sectores de industria, categorías de datos habituales y umbrales de escalamiento, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "respuesta-arco",
+      "description": "Clasificación y respuesta a solicitudes ARCO (Acceso, Rectificación, Cancelación, Oposición) y habeas data. Calcula plazos según jurisdicción, evalúa causas de denegación legítima (art. 14 Ley 18.331 / art. 16 Ley 25.326), y redacta el acuse de recibo y la respuesta sustantiva lista para revisión del abogado.",
+      "user-invocable": true
+    },
+    {
+      "name": "revision-dpa",
+      "description": "Revisión de Acuerdos de Procesamiento de Datos (DPA) desde la perspectiva del cliente, ya sea responsable o encargado del tratamiento. Verifica objeto, base legal, categorías de datos, medidas de seguridad, sub-encargados, transferencias internacionales y plazos de notificación de brechas. Produce tabla semáforo y cláusulas sugeridas.",
+      "user-invocable": true
+    },
+    {
+      "name": "generacion-eia",
+      "description": "Conducción paso a paso de una Evaluación de Impacto en la Privacidad (EIA/PIA). Recopila descripción del tratamiento, finalidad, datos involucrados, partes, transferencias y medidas de seguridad. Produce informe con análisis de riesgos, medidas de mitigación y conclusión sobre procedencia del tratamiento.",
+      "user-invocable": true
+    }
+  ]
+}

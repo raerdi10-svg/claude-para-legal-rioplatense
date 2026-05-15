@@ -1,0 +1,24 @@
+{
+  "name": "propiedad-intelectual",
+  "display_name": "Propiedad Intelectual Rioplatense",
+  "description": "Asistente de práctica de propiedad intelectual para estudios jurídicos de Argentina y Uruguay. Cubre búsqueda y clearing de marcas, redacción de cartas de cese y desistimiento, y configuración del perfil del estudio, con referencias a la Ley 17.011 y la Ley 9.739 (Uruguay) y la Ley 22.362 y la Ley 11.723 (Argentina), con citas a los registros DNPI e INPI.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil de propiedad intelectual del estudio. Recopila jurisdicción, tipo de activos (marcas, patentes, derechos de autor, software), tipo de clientes (titulares o demandados), sectores habituales y reglas de escalamiento, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "busqueda-marca",
+      "description": "Primera pasada de clearing marcario. Analiza el signo a registrar (descriptividad, distintividad, genericidad), identifica knock-outs probables en el DNPI (Uruguay) o el INPI (Argentina), aplica heurísticas de confusión fonética, gráfica y conceptual, y produce un dictamen de riesgo de oposición con recomendación sobre si registrar o no.",
+      "user-invocable": true
+    },
+    {
+      "name": "cese-desistimiento",
+      "description": "Redacción de carta de cese y desistimiento por infracción de propiedad intelectual. Clasifica el tipo de infracción (marca, obra protegida, patente, secreto empresarial), identifica la norma violada, redacta la carta completa con fundamento jurídico, plazo para cesar y consecuencias del incumplimiento, lista para revisión del abogado.",
+      "user-invocable": true
+    }
+  ]
+}

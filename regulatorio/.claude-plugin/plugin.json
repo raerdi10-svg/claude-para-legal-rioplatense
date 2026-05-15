@@ -1,0 +1,24 @@
+{
+  "name": "regulatorio",
+  "display_name": "Derecho Regulatorio Rioplatense",
+  "description": "Asistente de práctica regulatoria para estudios jurídicos de Argentina y Uruguay. Cubre revisión de lanzamiento de productos contra el marco regulatorio aplicable, análisis de brechas entre cambios normativos y políticas internas del cliente, y configuración del perfil del estudio, con referencias al BCU, BCRA, URSEA, URSEC, CNV, AFIP/ARCA, ANMAT y demás organismos reguladores rioplatenses.",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil regulatorio del estudio. Recopila organismos reguladores relevantes, sectores de clientes, tipo de productos habituales, umbrales de riesgo y socio de referencia, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "revision-lanzamiento",
+      "description": "Revisión regulatoria de un producto o servicio a lanzar. Identifica el marco normativo aplicable (financiero, sanitario, telecomunicaciones, datos, competencia, consumidor), verifica requisitos de registro o autorización previa, restricciones de publicidad y comunicación comercial, y produce un checklist de compliance con semáforo de riesgo regulatorio.",
+      "user-invocable": true
+    },
+    {
+      "name": "diff-politica",
+      "description": "Análisis de brecha entre un cambio normativo nuevo (comunicación, resolución, decreto) y las políticas internas vigentes del cliente. Identifica políticas desactualizadas, nuevas obligaciones, plazos de adecuación y áreas del negocio impactadas. Produce tabla de brechas con prioridad y plazo.",
+      "user-invocable": true
+    }
+  ]
+}
