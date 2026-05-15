@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 import yaml
 
-REPO_ROOT = Path(__file__).parent
+REPO_ROOT = Path(__file__).parent.parent
 PLUGINS = [
     "civil-comercial", "corporativo", "laboral", "litigio",
     "regulatorio", "privacidad", "propiedad-intelectual", "administrativo",
