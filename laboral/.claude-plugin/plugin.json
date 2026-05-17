@@ -1,4 +1,53 @@
-{
+{{
+  "name": "laboral",
+  "display_name": "Derecho Laboral Rioplatense",
+  "description": "Asistente de práctica laboral para estudios jurídicos de Argentina y Uruguay. Revisión de despidos y contrataciones, clasificación de trabajadores, investigaciones internas, redacción de políticas de empleo y Q&A laboral con referencias a la LCT, Ley 18.566 y normativa AFIP/MTSS/BPS.",
+  "version": "1.1.0",
+  "license": "Apache-2.0",
+  "skills": [
+    {
+      "name": "cold-start-interview",
+      "description": "Entrevista de configuración inicial del perfil laboral del estudio. Recopila jurisdicción principal, industrias cliente típicas, tipo de práctica (asesoramiento preventivo / litigio / ambos), umbrales de riesgo por monto, convenios colectivos habituales y socio de referencia, y escribe el perfil resultante en CLAUDE.md.",
+      "user-invocable": true
+    },
+    {
+      "name": "revision-despido",
+      "description": "Ejecuta una propuesta de despido contra los flags de riesgo jurisdiccional. Verifica la causal, la antigüedad, el cálculo de indemnización (LCT art. 245 / Ley 16.906 UY), la existencia de fueros especiales y el riesgo de despido discriminatorio. Produce semáforo de riesgo, cálculo indemnizatorio y lista de pasos previos obligatorios.",
+      "user-invocable": true
+    },
+    {
+      "name": "revision-contratacion",
+      "description": "Revisión de cartas oferta y cláusulas restrictivas en contratos de trabajo. Identifica período de prueba, no competencia, confidencialidad, propiedad intelectual de las creaciones del empleado, beneficios y su carácter remuneratorio, jurisdicción aplicable. Produce tabla de cláusulas con observación y texto sugerido de reemplazo.",
+      "user-invocable": true
+    },
+    {
+      "name": "clasificacion-trabajador",
+      "description": "Testea un engagement propuesto contra el test de relación de dependencia (LCT art. 21 / jurisprudencia MTSS). Concluye si es relación de dependencia o locación de servicios, y en zona gris lista factores de riesgo y medidas de mitigación.",
+      "user-invocable": true
+    },
+    {
+      "name": "investigacion-interna",
+      "description": "Conduce una investigación interna de asuntos laborales. Produce plan de investigación, guía de preguntas por entrevistado, checklist de documentos, criterios de credibilidad y borrador de informe final.",
+      "user-invocable": true
+    },
+    {
+      "name": "politica-laboral",
+      "description": "Redacta políticas de empleo (trabajo remoto, acoso, uso de IA, privacidad, etc.) con suplementos jurisdiccionales para Argentina y Uruguay.",
+      "user-invocable": true
+    },
+    {
+      "name": "qa-laboral",
+      "description": "Responde consultas laborales rápidas de abogados. Identifica jurisdicción, cita la norma aplicable (LCT, convenio colectivo, Ley 18.566), da la respuesta y señala zonas grises o jurisprudencia contradictoria.",
+      "user-invocable": true
+    },
+    {
+      "name": "baremo-ilp",
+      "description": "Calcula el % de Incapacidad Laboral Permanente y el quantum (Ley 24.557 art. 14) según el Decreto 549/2025 (vigente desde febrero 2026). Acepta informes médicos (EMG, RMI, espirometría, ecocardiograma, psicodiagnóstico) o secuelas ya listadas. Aplica SA por grupo anatómico con techos, CR entre grupos, Factores de Ponderación y preexistencia. Solo Argentina.",
+      "user-invocable": true
+      
+    }
+  ]
+}
   "name": "laboral",
   "display_name": "Derecho Laboral Rioplatense",
   "description": "Asistente de práctica laboral para estudios jurídicos de Argentina y Uruguay. Revisión de despidos y contrataciones, clasificación de trabajadores, investigaciones internas, redacción de políticas de empleo y Q&A laboral con referencias a la LCT, Ley 18.566 y normativa AFIP/MTSS/BPS.",
